@@ -1,4 +1,4 @@
-# HKU_Covid_Serosurvey_2022
+# HKU Covid Serosurvey 2022
 This repository contains code and publicly available data for "Population-based sero-epidemiological estimates of real-world vaccine effectiveness against Omicron infection in an infection-naive population, Hong Kong, January to July 2022" 
 
 Required software: MATLAB 2022a with Parallel Computing and Econometrics Toolboxes and R 4.2.1 with the tidyverse, pROC and cowplot packages
