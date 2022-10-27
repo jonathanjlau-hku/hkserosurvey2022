@@ -2,7 +2,7 @@ library(tidyverse)
 library(lubridate)
 library(cowplot)
 
-# Purpose: Plot ELISA ODs using box and jitter plot in Extended Data Figure 4 by vaccination category
+# Purpose: Plot ELISA ODs using box and jitter plot in Extended Data Figure 4 by vaccination and infection history
 # Note 1: Vaccination history data cannot be shared pursuant to confidentiality Undertaking to the Department of Health, Government of the HKSAR. 
 # Note 2: Serology data are available from the authors upon reasonable request.
 
