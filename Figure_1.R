@@ -364,6 +364,7 @@ sequences_count_plot <- sequences_count %>% ggplot(aes(x=year_week, y = per, fil
   theme_classic()
 sequences_count_plot
 
+
 # Plot weekly cumulative vaccinations (by dose) (Panel C)
 vaccines <- read_csv ("hk_vaccines.csv")
 vaccines <- vaccines %>% select(date,firstDose.cumulative.total,secondDose.cumulative.total,thirdDose.cumulative.total,fourthDose.cumulative.total) 
@@ -393,6 +394,22 @@ vaccinees_by_dose_plot <- vaccinees_by_dose %>% ggplot(aes(x=date, y = Count/10^
   
 vaccinees_by_dose_plot
 
+# Plot weekly serum samples collected (panel D)
+samples <- read_csv("combined_data.csv") %>% select(donation_date)
+samples_count <- count(samples,donation_date)
+
+samples_count <- samples_count %>% mutate(year_week=floor_date(donation_date,"1 week")) %>%
+  group_by(year_week) %>%
+  summarise(weekly_total=sum(n))
+
+samples_count_plot <- samples_count %>% ggplot(aes(x=year_week, y = weekly_total)) + 
+  geom_col(fill="#3C548899") + 
+  labs(x = "Date", y = "Weekly\nsamples")+
+  scale_x_date(date_labels = "%Y-%m", date_breaks = "2 months", limits = as.Date(c(startDate,endDate)))+
+  scale_y_continuous(limits=c(0,1000),expand=c(0,0))+
+  theme_classic()
+samples_count_plot
+
 # Combine all plots and output as Figure_1.tiff
 
 legend <- get_legend(
@@ -402,33 +419,35 @@ legend <- get_legend(
 )
 
 
-aligned_incidence_plot <- align_plots(viral_load_lineplot+theme(axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10),legend.title = element_text(size=10), legend.text = element_text(size=10)),
-                                      sequences_count_plot+theme(axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10),legend.title = element_text(size=10), legend.text = element_text(size=10)),
-                                      vaccinees_by_dose_plot+theme(axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10),legend.title = element_text(size=10), legend.text = element_text(size=10)),
+aligned_incidence_plot <- align_plots(viral_load_lineplot+theme(axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10),legend.title = element_text(size=9), legend.text = element_text(size=9)),
+                                      sequences_count_plot+theme(axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10),legend.title = element_text(size=9), legend.text = element_text(size=9)),
+                                      vaccinees_by_dose_plot+theme(axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10),legend.title = element_text(size=9), legend.text = element_text(size=9)),
+                                      samples_count_plot+theme(axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10),legend.title = element_text(size=9), legend.text = element_text(size=9)),
                                       align="v",axis="lr")
 dev.new(width=5,height=10,unit="px",noRStudioGD = TRUE)
+
 png(file = "Figure_1a.png", width = 600, height = 400)
-incidence_variant_plot <- plot_grid(aligned_incidence_plot[[1]],aligned_incidence_plot[[2]],aligned_incidence_plot[[3]],ncol=1,rel_heights=c(1,0.5,0.5),labels=c("A","B","C"))
+incidence_variant_plot <- plot_grid(aligned_incidence_plot[[1]],aligned_incidence_plot[[2]],aligned_incidence_plot[[3]],aligned_incidence_plot[[4]],ncol=1,rel_heights=c(1.1,1,0.6,0.6),labels=c("A","B","C","D"),label_y=c(1,1,1,1.05))
 incidence_variant_plot
 dev.off()
 
 aligned_plots_BNT <- align_plots((BNT_barplot_dose_1+theme(legend.position="none",axis.text.x = element_text(size=10),axis.text.y=element_text(size=10), axis.title.x = element_blank(),axis.title.y = element_text(size=10))),
-                             (BNT_barplot_dose_2+theme(legend.position="none",axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10))),
-                             (BNT_barplot_dose_3+theme(legend.position="none",axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10))),
-                             (BNT_barplot_dose_4+theme(legend.position="none",axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10))),
-                             align="v",axis="lr")
+                                 (BNT_barplot_dose_2+theme(legend.position="none",axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10))),
+                                 (BNT_barplot_dose_3+theme(legend.position="none",axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10))),
+                                 (BNT_barplot_dose_4+theme(legend.position="none",axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10))),
+                                 align="v",axis="lr")
 
 vax_plots_BNT <- plot_grid(aligned_plots_BNT[[1]],aligned_plots_BNT[[2]],aligned_plots_BNT[[3]],aligned_plots_BNT[[4]],
-          ncol=1, rel_heights = c(1,1,1,1),labels=c("D","E","F","G"),label_y=1.05)
+                           ncol=1, rel_heights = c(1,1,1,1),labels=c("E","F","G","H"),label_y=1.05)
 
 aligned_plots_C <- align_plots((C_barplot_dose_1+theme(legend.position="none",axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10))),
-                             (C_barplot_dose_2+theme(legend.position="none",axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10))),
-                             (C_barplot_dose_3+theme(legend.position="none",axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10))),
-                             (C_barplot_dose_4+theme(legend.position="none",axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10))),
-                             align="v",axis="lr")
+                               (C_barplot_dose_2+theme(legend.position="none",axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10))),
+                               (C_barplot_dose_3+theme(legend.position="none",axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10))),
+                               (C_barplot_dose_4+theme(legend.position="none",axis.text.x = element_text(size=10),axis.text.y=element_text(size=10),axis.title.x = element_blank(),axis.title.y = element_text(size=10))),
+                               align="v",axis="lr")
 
 vax_plots_C <- plot_grid(aligned_plots_C[[1]],aligned_plots_C[[2]],aligned_plots_C[[3]],aligned_plots_C[[4]],
-                       ncol=1, rel_heights = c(1,1,1,1),labels=c("H","I","J","K"),label_y = 1.05)
+                         ncol=1, rel_heights = c(1,1,1,1),labels=c("I","J","K","L"),label_y = 1.05)
 
 vax_plots <- plot_grid(vax_plots_BNT,vax_plots_C,nrow=1)
 

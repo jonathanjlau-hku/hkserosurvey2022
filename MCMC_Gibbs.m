@@ -40,7 +40,7 @@ while (chainGood==false)
     x = chain.bestParameters;
     chain.startingPoint = x;
     xLogLikelihood = logLikelihood(x, chain.data);
-    xLogPosterior = xLogLikelihood+logPrior(x);
+    xLogPosterior = xLogLikelihood+logPrior(x, chain.data);
     
     chain.record(1,:) = x;
     chain.logLikelihood(1) = xLogLikelihood;
@@ -50,14 +50,14 @@ while (chainGood==false)
     
     if (chainNum>2 && chainNum<20)
         stepSTD_target = exp((pTarget_logit-regressionCoef(:,1))./regressionCoef(:,2));
-        scalingFactor = min(2, max(0.5, stepSTD_target'./chain.stepSTD));
+        scalingFactor = min(10, max(0.1, stepSTD_target'./chain.stepSTD));
         fI = find(chain.probAccept>0.9);
         if (~isempty(fI))
-            scalingFactor(fI) = 1.2;
+            scalingFactor(fI) = 2;
         end
         fI = find(chain.probAccept<0.1);
         if (~isempty(fI))
-            scalingFactor(fI) = 0.8;
+            scalingFactor(fI) = 0.5;
         end
         chain.stepSTD = chain.stepSTD.*scalingFactor;
     else
@@ -71,7 +71,14 @@ while (chainGood==false)
             end
         end
     end
+    fI = find(chain.UB==1);
+    chain.stepSTD(fI) = min(chain.stepSTD(fI), 0.5);
+%     chain.stepSTD(fI) = chain.stepSTD(fI);
     fI = chain.probAccept>chain.probAcceptRange(1) & chain.probAccept<chain.probAcceptRange(2);
+    for para=1:chain.numParameters
+        chain.num_bounces{para} = [];
+    end
+    
     numStepsPerUpdate = ones(1,chain.numParameters);
     if (sum(fI)>0)
         numStepsPerUpdate(fI==false) = 2+ceil(sum(fI==false)/sum(fI));
@@ -90,6 +97,7 @@ while (chainGood==false)
     tic_start = tic;
     displayCounter = chain.numStepsBetweenDisplay;
     
+
     while (iter<=chain.totalNumSteps)
         for subStep=1:numStepsPerUpdate(paraUpdate)
           
@@ -106,21 +114,29 @@ while (chainGood==false)
                 stepStorageIndex = 1;
             end
             
+            jj = 0;
             while (y(paraUpdate)<chain.LB(paraUpdate) || y(paraUpdate)>chain.UB(paraUpdate))
                 if (y(paraUpdate)<chain.LB(paraUpdate))
                     y(paraUpdate) = chain.LB(paraUpdate)+(chain.LB(paraUpdate)-y(paraUpdate));
                 else
                     y(paraUpdate) = chain.UB(paraUpdate)-(y(paraUpdate)-chain.UB(paraUpdate));
                 end
+                jj = jj+1;
             end
-            
+            if (jj>0)
+                chain.num_bounces{paraUpdate}(end+1) = jj;
+            end
+            if (jj>1)
+                 [paraUpdate jj]
+            end
             yLogLikelihood = logLikelihood(y, chain.data);
-            yLogPosterior = yLogLikelihood+logPrior(y);
+            yLogPosterior = yLogLikelihood+logPrior(y, chain.data);
             
             if (yLogLikelihood>-1e300 && probStorage(probStorageIndex)<min(1,exp(yLogPosterior-xLogPosterior)))
                 x = y;
                 xLogLikelihood = yLogLikelihood;
                 xLogPosterior = yLogPosterior;
+                
                 
                 numAccept(paraUpdate) = numAccept(paraUpdate)+1;
             end
