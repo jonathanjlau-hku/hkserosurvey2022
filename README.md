@@ -1,6 +1,8 @@
 # HK Covid Serosurvey 2022
 This repository contains code and available source data for "Population-based sero-epidemiological estimates of real-world vaccine effectiveness against Omicron infection in an infection-naive population, Hong Kong, January to July 2022" 
 
+Last revision: Dec 14, 2022
+
 Required software: MATLAB 2022a with Parallel Computing and Econometrics Toolboxes and R 4.2.1 with the tidyverse, pROC and cowplot packages
 
 ## Code files for analysis
@@ -12,16 +14,18 @@ Code files:
 - MCMC_Gibbs.m: Gibbs sampler
 
 ## Code files in "/IAR_calculation/" folders
-(Note: separate folders have been created for different assumptions on delay to VE taking effect: 0, 7 and 14 days)
-- main_p_estimate_vF_age.m: Primary analysis for IAR and population immunity
-- infection_calc_vF.m: Function calculating probability of infection and immunity for each individual in Hong Kong
+(Note: separate folders have been created for different assumptions on delay to VE taking effect: 7 (base case), 14 and 21 days)
+- main_p_estimate_vF_age_[x]delay_weekly.m: Primary analysis for IAR and population immunity pursuant to assumptions on waning of infection-acquired immunity, where [x] denotes the delay to VE taking effect
+- infection_calc_vF_weekly.m: Function calculating probability of infection and immunity for each individual in Hong Kong, incorporating different assumptions on waning of infection-acquired immunity
 
 ## Code files for Figures and Extended Data Figures
 - Figure_1.R: Creates Figure 1
-- /Figure_2/Figure_2_age.R: Creates Figure 2, Extended data Figure 5 and Extended data Figure 6 (#)
+- /Figure_2_3_Extended_Fig_5_6_7_8/Figure_2_age.R: Creates Figure 2, Figure 3 and Extended data Figures 5 through 8 (#)
 - Extended_data_figure_1.m: Creates Extended data Figure 1 (#)
 - /controls/Extended_data_figure_3.R: Creates Extended Data Figure 3 (#)
 - Extended_data_figure_4.R: Creates Extended Data Figure 4
+- /Extended_data_figure_9/Extended_data_figure_9.R: Creates Extended Data Figure 9 (#)
+- /Extended_data_figure_10/Extended_data_figure_10.R: Creates Extended Data Figure 10 (#)
 
 ## Notes on data availability
 - Note 1: All source data have been included for files marked above with (#). 
