@@ -6,13 +6,13 @@ library(lubridate)
 rm(list=ls())
 # dev.off()
 
-## Purpose: To create Extended Data Figure 9 of estimates of VE and waning using 
+## Purpose: To create Extended Data Figure 4 of estimates of VE and waning using 
 ## only samples collected on or before June 15, 2022
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 startDate = ymd("2022-01-01")
 
-# VE plots (Extended Data Figure 9)
+# VE plots (Extended Data Figure 4)
 
 VE_BB_prctile_7delay <- as.data.frame(cbind(rep("BNT",201),rep("2 doses",201),rep("7 days",201),read_csv("./VE/VE_BB_prctile_7delay_age.csv",col_names = FALSE)))
 VE_BB_prctile_14delay <- as.data.frame(cbind(rep("BNT",201),rep("2 doses",201),rep("14 days",201),read_csv("./VE/VE_BB_prctile_14delay_age.csv",col_names = FALSE)))
@@ -66,20 +66,16 @@ VE_plot <- VE %>% ggplot(aes(x=Day))+
   scale_y_continuous(expand=c(0,0))+
   coord_cartesian(ylim=(c(0,1)))+
   theme(legend.position="bottom",
-        axis.title.x = element_text(size=12),
-        axis.title.y = element_text(size=12),
+        axis.title.x = element_text(size=8),
+        axis.title.y = element_text(size=8),
         panel.border=element_rect(colour='black',fill=NA,size=1),
-        strip.text.x = element_text(size = 12),
-        strip.text.y = element_text(size=12),
-        legend.title = element_text(size=12),
-        legend.text = element_text(size=12),
+        strip.text.x = element_text(size=8),
+        strip.text.y = element_text(size=8),
+        legend.title = element_text(size=8),
+        legend.text = element_text(size=8),
         panel.spacing=unit(2,"lines")
         )
   
-  
-dev.new (width = 5, height = 7.5, unit = "px", noRStudioGD = TRUE)
-png(file = "Extended_data_figure_9.png", width = 500, height = 750)
+ggsave(file = "Extended_data_fig_4.tiff",VE_plot, height=5,width=5,dpi=1000,compression="lzw")
 
-VE_plot
-dev.off()
 

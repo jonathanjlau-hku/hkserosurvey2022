@@ -110,5 +110,5 @@ roc_list <- list(
 
 full_plot <- plot_grid(roc_unvax,roc_BNT,roc_C,ncol=3,nrow=1,labels="AUTO")
 
-ggsave("Extended_data_figure_3.tiff",full_plot,width=9,height=3, dpi=1000, compression="lzw")
+ggsave("Extended_Data_Fig_3.tiff",full_plot,width=9,height=3, dpi=1000, compression="lzw")
 
