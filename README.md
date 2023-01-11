@@ -12,6 +12,7 @@ Code files:
 - loge.m: Log function floored at 1e-100
 - logPriorDist.m: Flat prior for MCMC inference
 - MCMC_Gibbs.m: Gibbs sampler
+- /Extended_data_figure_10/logLikelihood.m: Log-likelihood function for MCMC inference under seroconversion rate sensitvity scenarios as presented on Extended Data Figure 10 (all other code are the same as those used in the primary analysis)
 
 ## Code files in "/IAR_calculation/" folders
 (Note: separate folders have been created for different assumptions on delay to VE taking effect: 7 (base case), 14 and 21 days)
@@ -20,7 +21,7 @@ Code files:
 
 ## Code files for Figures and Extended Data Figures
 - Figure_1.R: Creates Figure 1
-- /Figure_2_3_Extended_Fig_5_6_7_8/Figure_2_age.R: Creates Figure 2, Figure 3 and Extended data Figures 5 through 8 (#)
+- /Figure_2_3_Extended_Fig_5_6_7_8/Figure_2_3_Extended_Figs_5_6_7_8.R: Creates Figure 2, Figure 3 and Extended data Figures 5 through 8 (#)
 - Extended_data_figure_1.m: Creates Extended data Figure 1 (#)
 - /controls/Extended_data_figure_3.R: Creates Extended Data Figure 3 (#)
 - Extended_data_figure_4.R: Creates Extended Data Figure 4
