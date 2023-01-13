@@ -4,7 +4,7 @@ close all;
 % Purpose: Plot age effect factors under Extended Data Figure 1
 % Note: Figure will be created in a separate Matlab window named "Figure 1"
 
-load("Extended_data_Figure_1.mat")
+load("Extended_data_Fig_1.mat")
 
 
 figure(1);

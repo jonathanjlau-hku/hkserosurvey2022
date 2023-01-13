@@ -76,6 +76,6 @@ VE_plot <- VE %>% ggplot(aes(x=Day))+
         panel.spacing=unit(2,"lines")
         )
   
-ggsave(file = "Extended_data_fig_4.tiff",VE_plot, height=5,width=5,dpi=1000,compression="lzw")
+ggsave(file = "Extended_Data_Fig_4.tiff",VE_plot, height=5,width=5,dpi=1000,compression="lzw")
 
 

@@ -467,7 +467,7 @@ ggsave(file = "Fig_4.pdf",full_plot_fig_4,width=180,height=120,units="mm")
 ggsave(file = "Fig_5.pdf",full_plot_fig_5,width=180,height=80,units="mm")
 ggsave(file = "Fig_6.pdf",iar_plot_facet,width=180,height=200,units="mm")
 
-ggsave(file = "Extended_Fig_5.tiff",imm_plot_facet,height=9,width=7,dpi=1000,compression="lzw")
-ggsave(file = "Extended_Fig_6.tiff",imm_barnard_plot_facet,height=9,width=7,dpi=1000,compression="lzw")
-ggsave(file = "Extended_Fig_7.tiff",imm_malato_plot_facet,height=9,width=7,dpi=1000,compression="lzw")
+ggsave(file = "Extended_Data_Fig_5.tiff",imm_plot_facet,height=9,width=7,dpi=1000,compression="lzw")
+ggsave(file = "Extended_Data_Fig_6.tiff",imm_barnard_plot_facet,height=9,width=7,dpi=1000,compression="lzw")
+ggsave(file = "Extended_Data_Fig_7.tiff",imm_malato_plot_facet,height=9,width=7,dpi=1000,compression="lzw")
 

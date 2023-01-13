@@ -58,5 +58,5 @@ iar_plot_facet <- estimates %>% ggplot(aes(x=Week))+
   theme(plot.margin = margin(t = 5, r = 20, b = 5, l = 5, unit = "pt"))
 iar_plot_facet
 
-ggsave(file = "Extended_Figure_8.tiff",iar_plot_facet,height=9,width=7,dpi=1000,compression="lzw")
+ggsave(file = "Extended_Data_Fig_8.tiff",iar_plot_facet,height=9,width=7,dpi=1000,compression="lzw")
 
