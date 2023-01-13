@@ -24,7 +24,7 @@ Code files:
 - Fig_2.R: Creates Figure 2
 - /Figure_3_4_5_6_Extended_Fig_5_6_7/Figure_3_4_5_6_Extended_Figs_5_6_7.R: Creates Figures 3 through 6, and Extended Data Figures 5 through 7 (#)
 - Extended_Data_Fig_1.m: Creates Extended Data Figure 1 (#)
-- /controls/Extended_Data_Fig_3.R: Creates Extended Data Figure 3 (#)
+- /controls/Extended_Data_Fig_3.R: Creates Extended Data Figure 3
 - /Extended_Data_Fig_4/Extended_Data_Fig_4.R: Creates Extended Data Figure 4 (#)
 - /Extended_Data_Fig_8/Extended_Data_Fig_8.R: Creates Extended Data Figure 8 (#)
 
