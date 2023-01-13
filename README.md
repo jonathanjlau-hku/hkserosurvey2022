@@ -30,4 +30,4 @@ Code files:
 
 ## Notes on data availability
 - Note 1: All source data have been included for files marked above with (#). 
-- Note 2: Source data for files not marked above with (#) cannot be shared due to confidentiality undertakings to the Department of Health and the Environmental Protection Department, both of the Government of the HKSAR. Interested parties may contact these departments to request for access.
+- Note 2: Source data for files not marked above with (#) cannot be shared due to confidentiality undertakings to the Department of Health, the Office of the Government Chief Information officer, the Centre for Health Protection and the Environmental Protection Department, all of the Government of the HKSAR. Interested parties may contact these departments to request for access.
