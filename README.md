@@ -1,7 +1,7 @@
 # HK Covid Serosurvey 2022
 This repository contains code and available source data for "Real-world COVID-19 vaccine effectiveness against the Omicron BA.2 variant in a SARS-CoV-2 infection-naive population" 
 
-Last revision: Jan 12, 2023
+Last revision: Jan 13, 2023
 
 Required software: MATLAB 2022a with Parallel Computing and Econometrics Toolboxes and R 4.2.1 with the tidyverse, pROC, cowplot and janitor packages
 
@@ -22,7 +22,7 @@ Code files:
 ## Code files for Figures and Extended Data Figures
 - Fig_1.R: Creates Figure 1
 - Fig_2.R: Creates Figure 2
-- /Figure_3_4_5_6_Extended_Fig_5_6_7/Figure_3_4_5_6_Extended_Figs_5_6_7.R: Creates Figures 3 through 6, and Extended Data Figures 5 through 7 (#)
+- /Figs_3_4_5_6_Extended_Figs_5_6_7/Figs_3_4_5_6_Extended_Figs_5_6_7.R: Creates Figures 3 through 6, and Extended Data Figures 5 through 7 (#)
 - Extended_Data_Fig_1.m: Creates Extended Data Figure 1 (#)
 - /controls/Extended_Data_Fig_3.R: Creates Extended Data Figure 3
 - /Extended_Data_Fig_4/Extended_Data_Fig_4.R: Creates Extended Data Figure 4 (#)
