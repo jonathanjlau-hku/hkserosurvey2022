@@ -24,10 +24,10 @@ Code files:
 - Fig_2.R: Creates Figure 2
 - /Figure_3_4_5_6_Extended_Fig_5_6_7/Figure_3_4_5_6_Extended_Figs_5_6_7.R: Creates Figures 3 through 6, and Extended Data Figures 5 through 7 (#)
 - Extended_Data_Fig_1.m: Creates Extended Data Figure 1 (#)
-- /controls/Extended_Data_Fig_3.R: Creates Extended Data Figure 3 (#)
+- /controls/Extended_Data_Fig_3.R: Creates Extended Data Figure 3
 - /Extended_Data_Fig_4/Extended_Data_Fig_4.R: Creates Extended Data Figure 4 (#)
 - /Extended_Data_Fig_8/Extended_Data_Fig_8.R: Creates Extended Data Figure 8 (#)
 
 ## Notes on data availability
 - Note 1: All source data have been included for files marked above with (#). 
-- Note 2: Source data for files not marked above with (#) cannot be shared due to confidentiality undertakings to the Department of Health and the Environmental Protection Department, both of the Government of the HKSAR. Interested parties may contact these departments to request for access.
+- Note 2: Source data for files not marked above with (#) cannot be shared due to confidentiality undertakings to the Department of Health, the Office of the Government Chief Information officer, the Centre for Health Protection and the Environmental Protection Department, all of the Government of the HKSAR. Interested parties may contact these departments to request for access.
